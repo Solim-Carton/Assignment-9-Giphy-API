@@ -7,12 +7,14 @@ async function getGif() {
   const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${query}&limit=25&offset=0&rating=g&lang=en`);
   const giphy = await response.json();
 
+  console.log(giphy);
+
   const container = document.getElementById("gif-container");
   container.innerHTML = "";
 
-  data.array.forEach(element => {
+  giphy.data.forEach(gif => {
     const img = document.createElement("img");
-    img.src = getGif.image.fixed_height.url;
+    img.src = gif.images.fixed_height.url;
     img.classList.add("col-md-3", "p-2");
     container.appendChild(img)
     
